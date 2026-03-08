@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Para Você, Minha Bichinha ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+padding:0;
+font-family:'Montserrat',sans-serif;
+background:black;
+color:white;
+text-align:center;
+overflow-y:auto;
+}
+
+/* BOTÃO INICIAL */
+
+.telaInicial{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+flex-direction:column;
+}
+
+.botaoMusica{
+padding:18px 40px;
+font-size:20px;
+border:none;
+border-radius:40px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+font-family:'Montserrat',sans-serif;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+}
+
+.botaoMusica:hover{
+background:#ff1e4d;
+}
+
+/* CONTEÚDO */
+
+.container{
+display:none;
+padding:40px 20px;
+max-width:800px;
+margin:auto;
+position:relative;
+z-index:2;
+}
+
+h1{
+font-size:38px;
+margin-bottom:20px;
+}
+
+.mensagem{
+font-size:20px;
+line-height:1.8;
+margin-bottom:40px;
+}
+
+.slideshow img{
+max-width:90%;
+max-height:70vh;
+height:auto;
+width:auto;
+border-radius:15px;
+margin-top:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.6);
+object-fit:contain;
+border:4px solid rgba(255,255,255,0.5);
+}
+
+/* ROSAS */
+
+.rosa{
+position:fixed;
+top:-50px;
+font-size:24px;
+animation:cair linear infinite;
+z-index:1;
+}
+
+@keyframes cair{
+0%{
+transform:translateY(-50px) rotate(0deg);
+opacity:1;
+}
+100%{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+}
+
+/* ESTRELA */
+
+.estrela{
+position:fixed;
+top:0;
+left:-100px;
+font-size:20px;
+color:white;
+animation:estrelaCadente 6s linear infinite;
+z-index:1;
+display:none;
+}
+
+@keyframes estrelaCadente{
+0%{
+transform:translate(-100px,-100px);
+opacity:0;
+}
+10%{
+opacity:1;
+}
+100%{
+transform:translate(120vw,120vh);
+opacity:0;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- TELA INICIAL -->
+
+<div class="telaInicial" id="telaInicial">
+
+<h2>Tenho uma surpresa para você ❤️</h2>
+
+<button class="botaoMusica" onclick="iniciarSurpresa()">
+Abrir surpresa
+</button>
+
+</div>
+
+<!-- CONTEÚDO -->
+
+<div class="container" id="conteudo">
+
+<h1>💖 Para a mulher da minha vida 💖</h1>
+
+<div class="mensagem">
+
+Hoje não é apenas o Dia das Mulheres.
+
+É um dia para lembrar o quanto você é especial, o quanto sua presença ilumina tudo ao seu redor e o quanto o mundo se torna um lugar mais bonito por causa de você.
+
+Seu sorriso tem o poder de transformar dias comuns em momentos inesquecíveis.
+
+Cada instante ao seu lado se torna uma memória que guardo com carinho.
+Cada conversa, cada abraço, cada olhar... tudo em você tem um significado único para mim.
+
+Você não é apenas uma mulher incrível.
+Você é alguém que inspira, que encanta e que faz meu coração encontrar paz.
+
+Se hoje estrelas cruzam o céu e rosas caem lentamente, é porque até o universo parece querer celebrar quem você é.
+
+Obrigado por existir.
+Obrigado por fazer parte da minha vida.
+
+Feliz Dia das Mulheres, meu amor. 💖
+
+</div>
+
+<div class="slideshow">
+<img id="foto" src="J1.jpeg">
+</div>
+
+</div>
+
+<audio id="musica" loop>
+<source src="J_song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="estrela" id="estrela">⭐</div>
+
+<script>
+
+/* INICIAR SURPRESA */
+
+function iniciarSurpresa(){
+
+document.getElementById("telaInicial").style.display="none"
+
+document.getElementById("conteudo").style.display="block"
+
+document.getElementById("estrela").style.display="block"
+
+document.getElementById("musica").play()
+
+}
+
+/* SLIDESHOW */
+
+let fotos=[
+"J1.jpeg",
+"J2.jpeg",
+"J3.jpeg",
+"J4.jpeg",
+"J5.jpeg",
+"J6.jpeg",
+"J7.jpeg",
+"J8.jpeg",
+"J9.jpeg",
+"J10.jpeg",
+"J11.jpeg"
+]
+
+let i=0
+
+function trocarFoto(){
+
+i++
+
+if(i>=fotos.length){
+i=0
+}
+
+document.getElementById("foto").src=fotos[i]
+
+}
+
+setInterval(trocarFoto,3000)
+
+/* ROSAS */
+
+function criarRosa(){
+
+let rosa=document.createElement("div")
+
+rosa.classList.add("rosa")
+
+rosa.innerHTML="🌹"
+
+rosa.style.left=Math.random()*100+"vw"
+
+rosa.style.animationDuration=(5+Math.random()*5)+"s"
+
+document.body.appendChild(rosa)
+
+setTimeout(()=>{
+rosa.remove()
+},10000)
+
+}
+
+setInterval(criarRosa,500)
+
+</script>
+
+</body>
+</html>
